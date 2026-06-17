@@ -1,6 +1,6 @@
 name = "RodHeatDiffusion"
 uuid = "133d6e22-7b10-4069-be97-494641d1ab2b"
-authors = ["Marycha", "Maja Boruszek", "Jakub Klimek", "Aleksandra Rześniowiecka"]
+authors = ["Maria Wilgosz", "Maja Boruszek", "Jakub Klimek", "Aleksandra Rześniowiecka"]
 version = "0.1.0"
 
 [deps]
