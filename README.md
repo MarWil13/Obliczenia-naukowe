@@ -5,7 +5,7 @@ w pręcie złożonym z jednego lub kilku materiałów (np. stal–miedź).
 
 Projekt grupowy na przedmiot *Obliczenia naukowe*, WMat 2026.
 
-**Autorzy:** Marycha, Maja Boruszek, Jakub Klimek, Aleksandra Rześniowiecka
+**Autorzy:** Maria Wilgosz, Maja Boruszek, Jakub Klimek, Aleksandra Rześniowiecka
 
 ## Opis problemu
 
