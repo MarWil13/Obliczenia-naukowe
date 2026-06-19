@@ -66,3 +66,11 @@ Wrapper na `solve_rod_theta` z `theta = 1`. Metoda jest bezwarunkowo stabilna dl
 ## `solve_rod_crank_nicolson(...)`
 
 Wrapper na `solve_rod_theta` z `theta = 0.5`. Metoda ma drugi rząd dokładności w czasie, ale przy bardzo dużym kroku czasowym i ostrych danych początkowych może dawać oscylacje.
+
+## `final_temperature(solver, x, k, rhoc; T_initial, T_left, T_right, dt, t_end)`
+
+Uruchamia wybrany solver i zwraca końcowy profil temperatury. Funkcja jest używana do porównywania metod dla tych samych warunków początkowych, brzegowych i czasu końcowego.
+
+## `error_norms(T, Tref, dx)`
+
+Liczy błędy między profilem temperatury `T` a dokładniejszym wynikiem numerycznym `Tref`. Zwraca błąd `L2`, opisujący różnicę całego profilu, oraz błąd `L∞`, oznaczający największe lokalne odchylenie.
