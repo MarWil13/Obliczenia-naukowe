@@ -1,7 +1,3 @@
-# Porównanie trzech metod czasowych: Euler jawny, Euler niejawny, Crank-Nicolson.
-# Uruchomienie z katalogu repozytorium:
-#     julia --project=. examples/compare_methods.jl
-
 using RodHeatDiffusion
 using Printf
 
