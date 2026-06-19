@@ -1,6 +1,6 @@
 # Dokumentacja eksportowanych elementów pakietu
 
-Ten plik streszcza eksportowane typy i funkcje pakietu `RodHeatDiffusion`. Szczegółowe docstringi są dostępne bezpośrednio w Julii przez operator pomocy, np. `?solve_rod_theta`.
+Ten plik streszcza eksportowane typy i funkcje pakietu `RodHeatDiffusion`.
 
 ## `Segment`
 
