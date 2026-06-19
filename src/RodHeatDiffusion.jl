@@ -4,7 +4,7 @@
 Pakiet do numerycznego modelowania dyfuzji ciepła w jednowymiarowym pręcie,
 złożonym z jednego lub kilku materiałów (np. stal–miedź).
 
-Implementuje rodzinę schematów θ (theta-method) dla równania:
+Implementuje rodzinę schematów θ dla równania:
 
     ρ(x) c(x) ∂T/∂t = ∂/∂x( k(x) ∂T/∂x )
 
@@ -34,10 +34,7 @@ export Segment, print_segments, build_rod,
        harmonic_mean, face_conductivity, build_operator, explicit_dt_limit,
        solve_rod_theta, solve_rod_explicit, solve_rod_implicit, solve_rod_crank_nicolson
 
-# ----------------------------------------------------------------------
-# 1. Dane materiałowe
-# ----------------------------------------------------------------------
-
+#materialy
 """
     Segment(; name, length, k, rho, c)
 
@@ -53,13 +50,6 @@ Pojedynczy odcinek pręta o jednorodnych właściwościach materiałowych.
 Pełny pręt opisuje się jako `Vector{Segment}` — kolejne segmenty są
 „zespawane" jeden za drugim w porządku, w jakim występują w wektorze.
 
-# Przykład
-```julia
-rod = [
-    Segment(name="Stal",  length=0.5, k=50.0,  rho=7800.0, c=450.0),
-    Segment(name="Miedź", length=0.5, k=400.0, rho=8900.0, c=390.0),
-]
-```
 """
 Base.@kwdef struct Segment
     name::String
@@ -91,10 +81,8 @@ function print_segments(segments::Vector{Segment})
     @printf("\nCałkowity opór cieplny R = %.5f m²K/W\n", R)
 end
 
-# ----------------------------------------------------------------------
-# 2. Budowa siatki obliczeniowej
-# ----------------------------------------------------------------------
 
+#siatka obliczeniowa
 """
     build_rod(segments::Vector{Segment}; Nx::Int=151) -> (x, k, rhoc, names)
 
@@ -111,10 +99,6 @@ każdemu punktowi właściwości materiału, do którego należy.
 - `rhoc::Vector{Float64}`  — `ρ·c` w każdym punkcie `[J/(m³K)]`,
 - `names::Vector{String}`  — nazwa materiału w każdym punkcie.
 
-# Przykład
-```julia
-x, k, rhoc, names = build_rod(rod_heterogeneous; Nx=151)
-```
 """
 function build_rod(segments::Vector{Segment}; Nx::Int=151)
     L = sum(s.length for s in segments)
@@ -138,10 +122,8 @@ function build_rod(segments::Vector{Segment}; Nx::Int=151)
     return x, k, rhoc, names
 end
 
-# ----------------------------------------------------------------------
-# 3. Dyskretyzacja operatora przewodzenia
-# ----------------------------------------------------------------------
 
+#dyskretyzacja operatora przewodzenia
 """
     harmonic_mean(a, b)
 
@@ -233,10 +215,7 @@ function explicit_dt_limit(k, rhoc, dx; safety=0.8)
     return safety / maximum(rates)
 end
 
-# ----------------------------------------------------------------------
-# 4. Solvery czasowe (schemat θ)
-# ----------------------------------------------------------------------
-
+#solvery czasowe - schemat θ
 """
     solve_rod_theta(x, k, rhoc; T_initial, T_left, T_right, dt, t_end, theta, save_every=1)
         -> (times, T_history)
@@ -245,11 +224,6 @@ Uniwersalny solver schematu θ dla równania dyfuzji ciepła w pręcie
 z warunkami brzegowymi Dirichleta:
 
     (I − θΔt L) T^{n+1} = (I + (1−θ)Δt L) T^n
-
-Dla `theta = 0` daje to Euler jawny, `theta = 1` Euler niejawny,
-`theta = 0.5` schemat Cranka–Nicolson (patrz wrappery
-[`solve_rod_explicit`](@ref), [`solve_rod_implicit`](@ref),
-[`solve_rod_crank_nicolson`](@ref)).
 
 # Argumenty
 - `x`, `k`, `rhoc`  — siatka i właściwości materiałowe (z [`build_rod`](@ref)),
@@ -337,4 +311,4 @@ Bezwarunkowo stabilna dla równania dyfuzji; dla dużego `dt` silnie tłumi
 """
 solve_rod_implicit(args...; kwargs...) = solve_rod_theta(args...; theta=1.0, kwargs...)
 
-end # module RodHeatDiffusion
+end 
