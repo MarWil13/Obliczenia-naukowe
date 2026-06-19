@@ -90,7 +90,7 @@ Buduje jednorodną siatkę `Nx` punktów na całej długości pręta i przypisuj
 każdemu punktowi właściwości materiału, do którego należy.
 
 # Argumenty
-- `segments` — wektor segmentów materiałowych (patrz [`Segment`](@ref)),
+- `segments` — wektor segmentów materiałowych,
 - `Nx`       — liczba punktów siatki (domyślnie 151).
 
 # Zwraca
@@ -153,7 +153,7 @@ end
 """
     build_operator(k, rhoc, dx) -> (L, leftcoef, rightcoef)
 
-Buduje rzadką (trójprzekątniową) macierz operatora przewodzenia ciepła
+Buduje rzadką macierz operatora przewodzenia ciepła
 dla punktów wewnętrznych siatki, w postaci konserwatywnej:
 
     ρᵢcᵢ dTᵢ/dt = (1/Δx²) [ k_{i+1/2}(T_{i+1} - Tᵢ) − k_{i−1/2}(Tᵢ − T_{i−1}) ]
