@@ -1,7 +1,3 @@
-# Podstawowy przykład użycia pakietu RodHeatDiffusion.jl
-# Uruchomienie z katalogu repozytorium:
-#     julia --project=. examples/basic_simulation.jl
-
 using RodHeatDiffusion
 using Printf
 
@@ -13,10 +9,8 @@ rod = [
 x, k, rhoc, names = build_rod(rod; Nx=151)
 dx = x[2] - x[1]
 
-# Początkowy impuls temperatury w środku pręta.
 T0 = 20 .+ 80 .* exp.(-((x .- 0.5).^2) ./ (2 * 0.05^2))
 
-# Metoda Cranka-Nicolsona: stabilna dla większych kroków czasowych.
 times, T_history = solve_rod_crank_nicolson(
     x, k, rhoc;
     T_initial = T0,
