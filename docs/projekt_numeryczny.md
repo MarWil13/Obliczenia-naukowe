@@ -111,9 +111,15 @@ Dokładność zależy od dwóch parametrów:
 - kroku przestrzennego `dx`,
 - kroku czasowego `dt`.
 
-Dla gładkich rozwiązań dyskretyzacja przestrzenna ma typowo drugi rząd dokładności. W czasie Euler jawny i Euler niejawny są metodami pierwszego rzędu, a Crank-Nicolson jest metodą drugiego rzędu.
+W testach porównano wyniki metod numerycznych z rozwiązaniem referencyjnym otrzymanym metodą Cranka–Nicolsona z bardzo małym krokiem czasowym. Błąd oceniono za pomocą normy `L2` oraz normy maksimum `L∞`.
 
-W testach porównano stan ustalony dla pręta jednorodnego z rozwiązaniem analitycznym, którym jest liniowy profil temperatury.
+| Metoda | `dt [s]` | Błąd `L2` | Błąd `L∞` | 
+|---|---:|---:|---:|
+| Euler jawny | 0.17355 | 1.558763e-02 | 4.711885e-02 | 
+| Euler niejawny | 10.00000 | 3.862792e-01 | 1.170538e+00 | 
+| Crank–Nicolson | 10.00000 | 1.504369e-02 | 7.566322e-02 | 
+
+Wyniki pokazują, że Euler jawny może dawać mały błąd, ale tylko przy bardzo małym kroku czasowym. Euler niejawny pozwala stosować większy krok czasu, jednak wprowadza większe tłumienie numeryczne. Metoda Cranka–Nicolsona zachowuje wysoką dokładność przy większym kroku czasowym, dlatego jest najkorzystniejsza w analizowanych testach.
 
 ## 9. Analiza wydajności
 
