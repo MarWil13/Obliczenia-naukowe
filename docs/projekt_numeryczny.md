@@ -131,6 +131,15 @@ Najtańsza w pojedynczym kroku jest metoda jawna, ale wymaga małego `dt`, więc
 | Euler niejawny | `O(N)` | mała, można brać duże `dt` | dobry do długich symulacji, ale może silniej wygładzać rozwiązanie |
 | Crank–Nicolson | `O(N)` | średnia | najlepszy kompromis między kosztem i dokładnością |
 
+
+Dla symulacji do czasu `t = 1000 s` porównano również rzeczywisty czas wykonania metod.
+
+| Metoda | `dt [s]` | Liczba kroków | Czas obliczeń `[s]` |
+|---|---:|---:|---:|
+| Euler jawny | 0.17355 | 5763 | 0.219765 |
+| Euler niejawny | 10.00000 | 100 | 0.015240 |
+| Crank–Nicolson | 10.00000 | 100 | 0.016425 |
+
 ## 10. Wizualizacja wyników
 
 Wizualizacja może obejmować:
