@@ -100,8 +100,12 @@ Opis eksportowanych funkcji znajduje się w pliku [`docs/api.md`](docs/api.md). 
 ?Segment
 ```
 
-## Analiza numeryczna
+## Analiza, wykresy i notebook
 
 Opis założeń, algorytmów, złożoności, możliwych problemów, dokładności, wydajności i praktycznego znaczenia znajduje się w pliku [`docs/projekt_numeryczny.md`](docs/projekt_numeryczny.md).
 
-Notebook z analizą i wykresami można umieścić w katalogu [`notebooks/`](notebooks/).
+Notebook z analizą i wykresami znajduje się w pliku [`notebooks/projekt_dyfuzja.ipynb`](notebooks/projekt_dyfuzja.ipynb).
+
+Wygenerowane wykresy i animacje znajdują się w katalogu [`figures/`](figures/).
+
+Przykładowe skrypty uruchomieniowe znajdują się w katalogu [`examples/`](examples/).
