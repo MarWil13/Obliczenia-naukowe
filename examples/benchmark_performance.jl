@@ -30,8 +30,6 @@ println("-"^60)
 for (name, solver, dt) in methods
     steps = ceil(Int, t_end / dt)
 
-    # Pierwsze uruchomienie służy do rozgrzania kompilacji Julii,
-    # żeby pomiar czasu nie obejmował głównie kompilowania funkcji.
     solver(
         x, k, rhoc;
         T_initial = copy(T0),
