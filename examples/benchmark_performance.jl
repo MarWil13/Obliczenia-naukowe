@@ -1,4 +1,3 @@
-```julia
 using RodHeatDiffusion
 using Printf
 
@@ -55,4 +54,3 @@ for (name, solver, dt) in methods
 
     @printf("%-18s %12.5f %12d %12.6f\n", name, dt, steps, elapsed)
 end
-```
