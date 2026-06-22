@@ -119,6 +119,12 @@ W testach porównano stan ustalony dla pręta jednorodnego z rozwiązaniem anali
 
 Najtańsza w pojedynczym kroku jest metoda jawna, ale wymaga małego `dt`, więc może potrzebować bardzo wielu kroków. Metody niejawne są droższe w jednym kroku, ale pozwalają stosować znacznie większy krok czasowy. Crank-Nicolson stanowi kompromis między stabilnością i dokładnością.
 
+| Metoda | Koszt jednego kroku | Liczba kroków | Wniosek wydajnościowy |
+|---|---:|---:|---|
+| Euler jawny | `O(N)` | bardzo duża, bo `dt = O(dx²)` | tani krok, ale słaby dla długich symulacji i gęstych siatek |
+| Euler niejawny | `O(N)` | mała, można brać duże `dt` | dobry do długich symulacji, ale może silniej wygładzać rozwiązanie |
+| Crank–Nicolson | `O(N)` | średnia | najlepszy kompromis między kosztem i dokładnością |
+
 ## 10. Wizualizacja wyników
 
 Wizualizacja może obejmować:
