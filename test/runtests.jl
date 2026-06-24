@@ -52,12 +52,13 @@ using RodHeatDiffusion
         T0 = zeros(length(x))
         dt_exp = explicit_dt_limit(k, rhoc, x[2] - x[1]; safety=0.9)
 
+        # Znacznie wydłużony czas symulacji i zmieniony moment zapisu!
         _, sol_exp = solve_rod_explicit(x, k, rhoc; T_initial=copy(T0),
-            T_left=0.0, T_right=100.0, dt=dt_exp, t_end=4000.0, save_every=10^9)
+            T_left=0.0, T_right=100.0, dt=dt_exp, t_end=200_000.0, save_every=10_000)
         _, sol_imp = solve_rod_implicit(x, k, rhoc; T_initial=copy(T0),
-            T_left=0.0, T_right=100.0, dt=5.0, t_end=4000.0, save_every=10^9)
+            T_left=0.0, T_right=100.0, dt=5.0, t_end=200_000.0, save_every=10_000)
         _, sol_cn = solve_rod_crank_nicolson(x, k, rhoc; T_initial=copy(T0),
-            T_left=0.0, T_right=100.0, dt=5.0, t_end=4000.0, save_every=10^9)
+            T_left=0.0, T_right=100.0, dt=5.0, t_end=200_000.0, save_every=10_000)
 
         T_ref = collect(range(0.0, 100.0; length=length(x)))  # rozwiązanie analityczne
 
