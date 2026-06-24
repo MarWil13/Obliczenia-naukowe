@@ -6,9 +6,9 @@ using RodHeatDiffusion
     @testset "harmonic_mean" begin
         @test harmonic_mean(2.0, 2.0) ≈ 2.0
         @test harmonic_mean(1.0, 3.0) ≈ 1.5
-        # gdy jedna z przewodności jest dużo mniejsza, średnia harmoniczna
-        # jest bliska tej mniejszej wartości (materiał gorzej przewodzący
-        # dominuje opór na granicy)
+        #gdy jedna z przewodności jest dużo mniejsza, średnia harmoniczna
+        #jest bliska tej mniejszej wartości (materiał gorzej przewodzący
+        #dominuje opór na granicy)
         @test harmonic_mean(1.0, 1000.0) < 2.5
     end
 
@@ -22,9 +22,9 @@ using RodHeatDiffusion
         @test length(x) == 101
         @test x[1] == 0.0
         @test x[end] ≈ 1.0
-        # początek pręta powinien mieć właściwości materiału A
+        #początek pręta powinien mieć właściwości materiału A
         @test k[1] == 10.0
-        # koniec pręta powinien mieć właściwości materiału B
+        #koniec pręta powinien mieć właściwości materiału B
         @test k[end] == 20.0
     end
 
@@ -32,7 +32,7 @@ using RodHeatDiffusion
         k = [10.0, 10.0, 20.0]
         kh = face_conductivity(k)
         @test length(kh) == 2
-        @test kh[1] ≈ 10.0           # styk dwóch identycznych materiałów
+        @test kh[1] ≈ 10.0
         @test kh[2] ≈ harmonic_mean(10.0, 20.0)
     end
 
@@ -45,8 +45,8 @@ using RodHeatDiffusion
     end
 
     @testset "trzy metody zbiegają do tego samego stanu ustalonego" begin
-        # Pręt jednorodny, warunki Dirichleta T_left=0, T_right=100.
-        # Stan ustalony to liniowy profil temperatury niezależnie od metody.
+        #pręt jednorodny, warunki Dirichleta T_left=0, T_right=100.
+        #stan ustalony to liniowy profil temperatury niezależnie od metody.
         rod = [Segment(name="Stal", length=1.0, k=50.0, rho=7800.0, c=450.0)]
         x, k, rhoc, _ = build_rod(rod; Nx=51)
         T0 = zeros(length(x))
