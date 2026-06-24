@@ -45,14 +45,12 @@ using RodHeatDiffusion
     end
 
     @testset "trzy metody zbiegają do tego samego stanu ustalonego" begin
-        #pręt jednorodny, warunki Dirichleta T_left=0, T_right=100.
-        #stan ustalony to liniowy profil temperatury niezależnie od metody.
+        #pręt jednorodny, warunki Dirichleta T_left=0, T_right=100
         rod = [Segment(name="Stal", length=1.0, k=50.0, rho=7800.0, c=450.0)]
         x, k, rhoc, _ = build_rod(rod; Nx=51)
         T0 = zeros(length(x))
         dt_exp = explicit_dt_limit(k, rhoc, x[2] - x[1]; safety=0.9)
 
-        # Znacznie wydłużony czas symulacji i zmieniony moment zapisu!
         _, sol_exp = solve_rod_explicit(x, k, rhoc; T_initial=copy(T0),
             T_left=0.0, T_right=100.0, dt=dt_exp, t_end=200_000.0, save_every=10_000)
         _, sol_imp = solve_rod_implicit(x, k, rhoc; T_initial=copy(T0),
@@ -60,7 +58,7 @@ using RodHeatDiffusion
         _, sol_cn = solve_rod_crank_nicolson(x, k, rhoc; T_initial=copy(T0),
             T_left=0.0, T_right=100.0, dt=5.0, t_end=200_000.0, save_every=10_000)
 
-        T_ref = collect(range(0.0, 100.0; length=length(x)))  # rozwiązanie analityczne
+        T_ref = collect(range(0.0, 100.0; length=length(x)))
 
         @test maximum(abs.(sol_exp[end, :] .- T_ref)) < 1.0
         @test maximum(abs.(sol_imp[end, :] .- T_ref)) < 1.0
